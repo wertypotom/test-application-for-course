@@ -1,0 +1,63 @@
+name: API Evolution Audit
+
+on:
+  pull_request:
+    branches: ['main']
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ==========================================
+      # THIS IS "STEP 1: THE DOWNLOAD"
+      # ==========================================
+      # It creates a temporary virtual machine and clones
+      # your repository onto its hard drive.
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # 0 indicates all history for all branches and tags.
+
+      # ==========================================
+      # THIS IS "STEP 2: THE BOOT SEQUENCE"
+      # ==========================================
+
+      # Prepare the machine to run our Node MCP Server
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Prepare the machine to run our Python CrewAI App
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Install the requirements for the MCP server
+      # (Assuming you put mcp-server in the same repo eventually,
+      #  or we clone it separately)
+      - name: Install MCP Dependencies
+        run: |
+          echo "Installing MCP Server..."
+          # cd mcp-server && npm install
+
+      # ==========================================
+      # THIS IS "STEP 3: THE INVESTIGATION (Triggering AI)"
+      # ==========================================
+      - name: Run API Evolution CrewAI Agent
+        env:
+          # We pass the database secrets securely
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
+          # We pass the absolute path of this cloned repo to CrewAI!
+          TARGET_PATH: ${{ github.workspace }}
+        run: |
+          echo "1. Starting MCP Server in background..."
+          # cd mcp-server && npm start &
+
+          echo "2. Starting CrewAI..."
+          # python crew_app/main.py
