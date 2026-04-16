@@ -1,0 +1,43 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+h1 {
+  border-bottom: 2px solid #6c63ff;
+  padding-bottom: 10px;
+}
+
+section {
+  margin-top: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #f8f9fa;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  padding: 10px;
+  background: #f1f3f9;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
