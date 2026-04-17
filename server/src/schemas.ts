@@ -29,6 +29,16 @@ export const OrderSchema = registry.register(
   }),
 );
 
+export const UserSchema = registry.register(
+  'User',
+  z.object({
+    id: z.number(),
+    name: z.string(),
+    surname: z.string(),
+    age: z.number(),
+  }),
+);
+
 registry.registerPath({
   method: 'get',
   path: '/api/items',

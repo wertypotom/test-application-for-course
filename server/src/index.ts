@@ -50,7 +50,6 @@ app.get('/api/orders', async (req, res) => {
   }
 });
 
-// Statically serve the pre-built openapi payload for local developers
 const docsPath = path.resolve(process.cwd(), 'openapi.json');
 if (fs.existsSync(docsPath)) {
   const document = JSON.parse(fs.readFileSync(docsPath, 'utf8'));
