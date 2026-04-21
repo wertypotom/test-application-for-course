@@ -14,7 +14,8 @@ export const ItemSchema = registry.register(
   z.object({
     id: z.number(),
     name: z.string(),
-    price: z.number(),
+    description: z.string(),
+    item_price: z.number(),
     created_at: z.string().nullable(),
   }),
 );
@@ -24,7 +25,7 @@ export const OrderSchema = registry.register(
   z.object({
     id: z.number(),
     user_id: z.string().uuid().nullable(),
-    item_name: z.string(),
+    order_item_name: z.string(),
     order_date: z.string().nullable(),
   }),
 );
