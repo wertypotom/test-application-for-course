@@ -24,7 +24,7 @@ export const OrderSchema = registry.register(
   z.object({
     id: z.number(),
     user_id: z.string().uuid().nullable(),
-    order_itemName: z.string(),
+    order_name: z.string(),
     order_date: z.string().nullable(),
   }),
 );
