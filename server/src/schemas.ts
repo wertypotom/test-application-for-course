@@ -13,8 +13,8 @@ export const ItemSchema = registry.register(
   'Item',
   z.object({
     id: z.number(),
-    item_name: z.string(),
-    item_super_price: z.number(),
+    name: z.string(),
+    price: z.number(),
     created_at: z.string().nullable(),
   }),
 );

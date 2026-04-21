@@ -18,7 +18,7 @@
           "id": {
             "type": "number"
           },
-          "name": {
+          "item_name": {
             "type": "string"
           },
           "price": {
@@ -29,12 +29,7 @@
             "nullable": true
           }
         },
-        "required": [
-          "id",
-          "name",
-          "price",
-          "created_at"
-        ]
+        "required": ["id", "name", "price", "created_at"]
       },
       "Order": {
         "type": "object",
@@ -55,12 +50,7 @@
             "nullable": true
           }
         },
-        "required": [
-          "id",
-          "user_id",
-          "item_name",
-          "order_date"
-        ]
+        "required": ["id", "user_id", "item_name", "order_date"]
       }
     },
     "parameters": {}
@@ -88,10 +78,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "status",
-                    "data"
-                  ]
+                  "required": ["status", "data"]
                 }
               }
             }
@@ -121,10 +108,7 @@
                       }
                     }
                   },
-                  "required": [
-                    "status",
-                    "data"
-                  ]
+                  "required": ["status", "data"]
                 }
               }
             }
