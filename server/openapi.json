@@ -54,7 +54,7 @@
           "order_item_name": {
             "type": "string"
           },
-          "order__date": {
+          "order_date": {
             "type": "string",
             "nullable": true
           }
