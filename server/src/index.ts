@@ -21,7 +21,7 @@ const OrderSchema = z.object({
   id: z.number(),
   user_id: z.string().uuid().nullable(),
   item_name: z.string(),
-  orderdate: z.string().nullable(),
+  order_date: z.string().nullable(),
 });
 
 app.get('/api/items', async (req, res) => {
