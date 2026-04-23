@@ -63,7 +63,7 @@
           "id",
           "user_id",
           "order_item_name",
-          "order__date"
+          "order__Date"
         ]
       }
     },
