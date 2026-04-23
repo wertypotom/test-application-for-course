@@ -2,27 +2,17 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { z } from 'zod';
+import fs from 'fs';
+import path from 'path';
+import swaggerUi from 'swagger-ui-express';
 import supabase from './config/supabaseClient.js';
+import { ItemSchema, OrderSchema } from './schemas.js';
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-const ItemSchema = z.object({
-  id: z.number(),
-  name: z.string(),
-  price: z.number(),
-  created_at: z.string().nullable(),
-});
-
-const OrderSchema = z.object({
-  id: z.number(),
-  user_id: z.string().uuid().nullable(),
-  item_name: z.string(),
-  order_date: z.string().nullable(),
-});
 
 app.get('/api/items', async (req, res) => {
   try {
@@ -59,6 +49,13 @@ app.get('/api/orders', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+const docsPath = path.resolve(process.cwd(), 'openapi.json');
+if (fs.existsSync(docsPath)) {
+  const document = JSON.parse(fs.readFileSync(docsPath, 'utf8'));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(document));
+  app.get('/api-docs.json', (req, res) => res.json(document));
+}
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

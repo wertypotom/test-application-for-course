@@ -1,34 +1,37 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { apiClient } from './api/client';
+import type { components } from './api/types.d';
 import './App.css';
 
-interface Item {
-  id: number;
-  name: string;
-  price: number;
-}
-interface Order {
-  id: number;
-  item_name: string;
-  order_date: string;
-}
+type Item = components['schemas']['Item'];
+type Order = components['schemas']['Order'];
 
 function App() {
   const [items, setItems] = useState<Item[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
-    // Fetch Items
-    axios
-      .get('http://localhost:4000/api/items')
-      .then((res) => setItems(res.data))
-      .catch(console.error);
+    // We launch async operations to use openapi-fetch
+    const loadData = async () => {
+      // apiClient.GET guarantees IDE auto-completion for '/api/items' and extracts the typed payload
+      const { data: itemData, error: itemError } =
+        await apiClient.GET('/api/items');
+      if (itemData?.data) {
+        setItems(itemData.data);
+      } else if (itemError) {
+        console.error(itemError);
+      }
 
-    // Fetch Orders
-    axios
-      .get('http://localhost:4000/api/orders')
-      .then((res) => setOrders(res.data))
-      .catch(console.error);
+      const { data: orderData, error: orderError } =
+        await apiClient.GET('/api/orders');
+      if (orderData?.data) {
+        setOrders(orderData.data);
+      } else if (orderError) {
+        console.error(orderError);
+      }
+    };
+
+    loadData();
   }, []);
 
   return (
@@ -50,7 +53,7 @@ function App() {
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>${item.price}</td>
+                <td>${item.item_price}</td>
               </tr>
             ))}
           </tbody>
@@ -62,8 +65,8 @@ function App() {
         <ul>
           {orders.map((order) => (
             <li key={order.id}>
-              Order #{order.id}: {order.item_name} (
-              {new Date(order.order_date).toLocaleDateString()})
+              Order #{order.id}: {order.order_item_name} (
+              {new Date(order.order_date ?? '').toLocaleDateString()})
             </li>
           ))}
         </ul>
