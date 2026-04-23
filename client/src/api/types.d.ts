@@ -95,14 +95,15 @@ export interface components {
         Item: {
             id: number;
             name: string;
-            price: number;
+            description: string;
+            item_price: number;
             created_at: string | null;
         };
         Order: {
             id: number;
             /** Format: uuid */
             user_id: string | null;
-            item_name: string;
+            order_item_name: string;
             order_date: string | null;
         };
     };
