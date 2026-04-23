@@ -24,7 +24,7 @@
           "description": {
             "type": "string"
           },
-          "item_price_string": {
+          "item_price_number": {
             "type": "number"
           },
           "created_at": {
