@@ -15,7 +15,7 @@ export const ItemSchema = registry.register(
     id: z.number(),
     name: z.string(),
     description: z.string(),
-    item_price: z.number(),
+    item_price_number: z.number(),
     created_at: z.string().nullable(),
   }),
 );
