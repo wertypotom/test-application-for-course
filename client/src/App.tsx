@@ -53,7 +53,7 @@ function App() {
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>${item.price}</td>
+                <td>${item.item_price}</td>
               </tr>
             ))}
           </tbody>
@@ -65,7 +65,7 @@ function App() {
         <ul>
           {orders.map((order) => (
             <li key={order.id}>
-              Order #{order.id}: {order.item_name} (
+              Order #{order.id}: {order.order_item_name} (
               {new Date(order.order_date ?? '').toLocaleDateString()})
             </li>
           ))}
