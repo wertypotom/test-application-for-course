@@ -36,7 +36,7 @@
           "id",
           "name",
           "description",
-          "item_price_number",
+          "item_price",
           "created_at"
         ]
       },
@@ -59,7 +59,12 @@
             "nullable": true
           }
         },
-        "required": ["id", "user_id", "order_item_name", "order_date"]
+        "required": [
+          "id",
+          "user_id",
+          "order_item_name",
+          "order_date"
+        ]
       }
     },
     "parameters": {}
@@ -87,7 +92,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"]
+                  "required": [
+                    "status",
+                    "data"
+                  ]
                 }
               }
             }
@@ -117,7 +125,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"]
+                  "required": [
+                    "status",
+                    "data"
+                  ]
                 }
               }
             }

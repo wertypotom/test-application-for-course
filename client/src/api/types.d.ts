@@ -96,7 +96,7 @@ export interface components {
             id: number;
             name: string;
             description: string;
-            item_price_number: number;
+            item_price: number;
             created_at: string | null;
         };
         Order: {
